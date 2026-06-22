@@ -1,3 +1,6 @@
+import mongoose from "mongoose";
+import { validation } from "../../../shared/constants.js";
+
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -16,6 +19,13 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, 'password is required'],
-        minLength: [validation.passwordMinLength, `password must be at least ${validation.passwordMinLength} characters`]
+        minLength: [validation.passwordMinLength, `password must be at least ${validation.passwordMinLength} characters`],
+        select: false
     }
+},
+{
+    timestamps: true,
+    versionKey: false
 })
+
+export const User = mongoose.models.User || mongoose.model('User', userSchema)
