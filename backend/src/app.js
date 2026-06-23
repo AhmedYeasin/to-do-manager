@@ -4,4 +4,4 @@ import { appRoutes } from './routes/appRoute.js';
 export const app = express();
 
 
-app.use('/', appRoutes);
+app.use('/api');
