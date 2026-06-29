@@ -5,4 +5,7 @@ export class ApiResponse {
         this.message = message
         this.data = data
     }
+    send(res){
+        return res.status(this.statusCode).json(this)
+    }
 }
