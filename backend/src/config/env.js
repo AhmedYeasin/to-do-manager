@@ -5,6 +5,7 @@ const envSchema = z.object({
     PORT: z.coerce.number().int().min(1).max(65535).default(5000),
     MONGODB_URI: z.string().min(1, 'mongodb uri is required'),
     JWT_ACCESS_SECRET: z.string().min(10, 'jwt access secret must be at least 10 characters long'),
+    JWT_REFRESH_SECRET: z.string().min(10, 'jwt refresh secret must be at least 10 characters long'),
 })
 
 const parsed = envSchema.safeParse(process.env)
