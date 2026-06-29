@@ -16,7 +16,7 @@ export const createAuthService = (userRepository = createAuthRepository()) => {
             const tokens = await generateTokenPair(user._id);
             return {
                 user,
-                tokens
+                ...tokens
             };
 
         }
