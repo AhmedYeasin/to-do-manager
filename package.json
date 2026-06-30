@@ -1,5 +1,6 @@
 {
 	"dependencies": {
+		"http-status": "^2.1.0",
 		"jsonwebtoken": "^9.0.3",
 		"mongoose": "^9.7.1",
 		"zod": "^4.4.3"

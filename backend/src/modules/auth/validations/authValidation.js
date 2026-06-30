@@ -2,7 +2,7 @@ import z, { regex } from "zod";
 import { validation } from "../../../shared/constants.js";
 
 
-const emailField = z.string().trim().toLowerCase().max(100, 'Email is too long.').pipe(z.email('Please provide a valid email')),
+const emailField = z.string().trim().toLowerCase().max(100, 'Email is too long.').pipe(z.email('Please provide a valid email'));
 
 const passwordField = z.string()
     .min(validation.passwordMinLength, `Password must be at least ${validation.passwordMinLength} characters long`)
