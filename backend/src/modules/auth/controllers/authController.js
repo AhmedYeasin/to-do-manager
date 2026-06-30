@@ -10,5 +10,7 @@ export const register = asyncHandler(async (req, res) => {
 })
 
 export const login = asyncHandler(async(req, res)=>{
-    new ApiResponse(http_status.ok, {}, 'user logged in successfully').send(res);
+    const { user, accessToken, refreshToken } = await authService.login(req.body);
+    
+    new ApiResponse(http_status.ok, {user, accessToken, refreshToken}, 'user logged in successfully').send(res);
 })
