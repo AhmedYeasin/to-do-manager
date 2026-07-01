@@ -9,6 +9,11 @@ const todoSchema = new mongoose.Schema({
         required: [true, 'title is required'],
         trim: true,
         minLength: [1, 'title cannot be empty'],
-        maxLength: [validation.title_max_length, `title cannot exceed ${validation.title_max_length} characters`]
+        maxLength: [validation.title_max_length, `title cannot exceed ${validation.title_max_length} characters`],
+
+        validate: {
+            validator: v => v != null && v.trim().length > 0,
+            message: 'title cannot be blank'
+        }
     }
-})
+}) 
