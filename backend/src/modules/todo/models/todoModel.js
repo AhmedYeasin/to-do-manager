@@ -29,19 +29,28 @@ const todoSchema = new mongoose.Schema({
         enum: {
             values: valid_todo_status,
             message: `status must be one of the following: ${valid_todo_status.join(', ')}`
-        }
+        },
+        default: todo_status.active
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User',
+    },
+},
 
-    default: todo_status.active
-}, {
-    timestamps: true,
-    versionKey: false,
-    toJSON: {
-        transform(doc, ret) {
-            ret.id = ret._id
-            delete ret._id
+    {
+        timestamps: true,
+        versionKey: false,
+        toJSON: {
+            transform(doc, ret) {
+                ret.id = ret._id
+                delete ret._id
+            }
         }
-    }
-})
+    })
 
+
+todoSchema.index({ user: 1, status: 1, createdAt: -1 })
+todoSchema.index({ user: 1, title: 'text', description: 'text' })
 export const Todo = mongoose.models.Todo || mongoose.model('Todo', todoSchema)
