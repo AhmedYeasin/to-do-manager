@@ -18,7 +18,7 @@ const todoSchema = new mongoose.Schema({
         }
     },
 
-    description:{
+    description: {
         type: String,
         trim: true,
         maxLength: [validation.description_max_length, `description cannot exceed ${validation.description_max_length} characters`],
@@ -30,5 +30,18 @@ const todoSchema = new mongoose.Schema({
             values: valid_todo_status,
             message: `status must be one of the following: ${valid_todo_status.join(', ')}`
         }
+    },
+
+    default: todo_status.active
+}, {
+    timestamps: true,
+    versionKey: false,
+    toJSON: {
+        transform(doc, ret) {
+            ret.id = ret._id
+            delete ret._id
+        }
     }
-}) 
+})
+
+export const Todo = mongoose.models.Todo || mongoose.model('Todo', todoSchema)
