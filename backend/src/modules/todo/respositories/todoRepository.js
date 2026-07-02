@@ -5,6 +5,9 @@ export const createTodoRepository=()=>{
         create: async todoData=>{
             try{
                 const todo = await Todo.create(todoData)
+                return{
+                    todo
+                }
             } catch(error){
                 console.error("Error creating todo")
             }

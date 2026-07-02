@@ -1,9 +1,12 @@
+import { createTodoRepository } from "../respositories/todoRepository.js"
+
 export const todoService = () => {
     return {
-        create: (todoData) => {
-            try{
-                // Logic to create a new todo item
-            } catch(error){
+        // Logic to create a new todo item
+        create: async (todoData) => {
+            try {
+                return await createTodoRepository.create(todoData)
+            } catch (error) {
                 console.error("Error creating todo")
             }
         }
